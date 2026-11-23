@@ -12,6 +12,7 @@ export function toggleFullscreen() {
 }
 
 export function openPresenter() {
-  const url = `${window.location.origin}/presenter`
+  // hash en lugar de ruta: funciona también en hosting estático (GitHub Pages)
+  const url = `${window.location.origin}${import.meta.env.BASE_URL}#presenter`
   window.open(url, 'reconstruir-presenter', 'width=1440,height=900')
 }
