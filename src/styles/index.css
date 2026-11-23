@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+/* ─── Design tokens ───────────────────────────────────────────────
+   Vinotinto como firma, marfil como espacio, carbón para leer.   */
+@theme {
+  --color-wine: #6e1f2f;
+  --color-wine-deep: #4b1320;
+  --color-wine-soft: #9a4a57;
+  --color-wine-mist: #f1e4e2;
+
+  --color-ivory: #f6f1e9;
+  --color-cream: #ece4d6;
+  --color-paper: #fbf8f2;
+  --color-ink: #1d1a18;
+  --color-night: #15110f;
+
+  --color-stone-1: #e2d9cc;
+  --color-stone-2: #bdb2a5;
+  --color-stone-3: #8c8177;
+  --color-stone-4: #5e554e;
+
+  --color-signal-red: #a5483c;
+  --color-signal-amber: #c49a45;
+  --color-signal-green: #5f7d5c;
+
+  --font-sans: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Fraunces", Georgia, "Times New Roman", serif;
+
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-emotional: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-ivory);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow: hidden;
+  transition: background-color 700ms var(--ease-soft);
+}
+
+body.presenter {
+  overflow: auto;
+}
+
+::selection {
+  background: var(--color-wine);
+  color: var(--color-ivory);
+}
+
+/* Focus visible, sobrio y consistente */
+:focus-visible {
+  outline: 2px solid var(--color-wine);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+.font-serif {
+  font-optical-sizing: auto;
+}
+
+.kicker {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+/* Grano editorial: un solo efecto global, casi imperceptible */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.grain-dark::after {
+  mix-blend-mode: screen;
+  opacity: 0.04;
+}
+
+/* Inputs editoriales: solo una línea */
+.field-line {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--color-stone-2);
+  outline: none;
+  transition: border-color 200ms var(--ease-soft);
+}
+.field-line:focus {
+  border-bottom-color: var(--color-wine);
+}
+.field-line::placeholder {
+  color: var(--color-stone-2);
+}
+
+/* Slider de la rueda */
+.range {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  height: 28px;
+  cursor: pointer;
+}
+.range::-webkit-slider-runnable-track {
+  height: 2px;
+  background: var(--color-stone-1);
+}
+.range::-moz-range-track {
+  height: 2px;
+  background: var(--color-stone-1);
+}
+.range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  margin-top: -7px;
+  border-radius: 50%;
+  background: var(--color-ivory);
+  border: 2px solid var(--color-wine);
+  transition: transform 150ms var(--ease-soft);
+}
+.range::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-ivory);
+  border: 2px solid var(--color-wine);
+}
+.range:active::-webkit-slider-thumb {
+  transform: scale(1.25);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 1ms !important;
+    animation-duration: 1ms !important;
+  }
+}
